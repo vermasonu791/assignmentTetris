@@ -1,0 +1,44 @@
+.app_header {
+  background-color: #dbfff4;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .center_container {
+    width: 350px;
+    margin: 0 auto;
+    .score_header {
+      padding: 22px;
+      background: #28c0d4;
+      height: 170px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      margin-bottom: -10px;
+      z-index: 1;
+      position: relative;
+      .box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .total_score {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    }
+    .random_number_wrapper {
+      background: #000;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      padding: 40px 22px 30px 20px;
+      .matrix_row {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
