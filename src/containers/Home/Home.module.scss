@@ -19,15 +19,37 @@
       z-index: 1;
       position: relative;
       .box {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        .flex_item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
       }
       .total_score {
         text-align: center;
         font-size: 20px;
         font-weight: bold;
         margin-top: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        p {
+          margin: 0;
+          margin-bottom: 10px;
+        }
+        button {
+          margin-top: 15px;
+          background: #000;
+          color: #fff;
+          border: none;
+          width: 120px;
+          font-size: 20px;
+          font-weight: bold;
+          padding: 8px 10px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-family: "Source Sans Pro";
+        }
       }
     }
     .random_number_wrapper {
@@ -38,6 +60,27 @@
       .matrix_row {
         display: flex;
         justify-content: space-between;
+      }
+    }
+
+    .timer {
+      max-width: 200px;
+      margin: 0 auto;
+      margin-top: 15px;
+      display: flex;
+    }
+    .time_finish {
+      width: 200px;
+      background: #fff;
+      height: 10px;
+      border-radius: 20px;
+      padding: 5px;
+      .time_bar {
+        height: 10px;
+        background-color: #ffeb39;
+        width: 100%;
+        border-radius: 20px;
+        z-index: 1;
       }
     }
   }

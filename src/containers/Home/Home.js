@@ -18,35 +18,54 @@ export default function Home() {
   const [achievedSum, setAchievedSum] = useState(randomInteger(MIN, MAX));
   const [showCurrentSum, setCurrentSum] = useState(0);
   const [matrix, setMatrix] = useState(getMatrix(ROW, COL, 0));
-  const [selectCell, setSelectCell] = useState([]);
+  const [selectedCellIndexArr, setSelectCell] = useState([]);
   const [score, setScore] = useState(0);
   const [isGameOver, setGameOver] = useState(false);
   const [insertCount, setCount] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  let interval;
 
+  /*play again*/
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
+  /* Insert random number row to matrix on first render */
+  useEffect(() => {
+    insertRandowArrayToMatrix(COL);
+  }, []);
+
+  /* This function will run when you will click any cell */
   const handleCellClick = e => {
     const indexObj = getIndex(e);
     /* case 1 when we found sum on click single cell */
     if (achievedSum == parseInt(e.target.value)) {
-      updateStatus([indexObj]);
+      updateMatrix([indexObj]);
       insertRandowArrayToMatrix(COL);
       setScore(prev => prev + 1);
       return;
     }
-    if (selectCell.length == 0) {
-      setSelectCell([...selectCell, indexObj]);
+
+    /* check if user clicking on same cell again */
+    if (selectedCellIndexArr.length == 0) {
+      setSelectCell([...selectedCellIndexArr, indexObj]);
       setCurrentSum(prev => prev + parseInt(e.target.value));
     } else {
-      for (let i = 0; i < selectCell.length; i++) {
-        if (JSON.stringify(selectCell[i]) == JSON.stringify(indexObj)) {
+      /* loop through the selected index array  */
+      for (let i = 0; i < selectedCellIndexArr.length; i++) {
+        if (
+          JSON.stringify(selectedCellIndexArr[i]) == JSON.stringify(indexObj)
+        ) {
           setCurrentSum(showCurrentSum - parseInt(e.target.value));
-          const temp = [...selectCell];
+          /* remove the index from selected array */
+          const temp = [...selectedCellIndexArr];
           temp.splice(i, 1);
           setSelectCell(temp);
           return;
         }
       }
-      setSelectCell([...selectCell, indexObj]);
+      /* push selected cell index to selected array*/
+      setSelectCell([...selectedCellIndexArr, indexObj]);
       setCurrentSum(prev => prev + parseInt(e.target.value));
     }
   };
@@ -55,7 +74,7 @@ export default function Home() {
     /* case 2 If the currentsum is equal to achieved the sum */
     if (achievedSum == showCurrentSum) {
       setScore(prev => prev + 1);
-      updateStatus(selectCell);
+      updateMatrix(selectedCellIndexArr);
       const lastArraySum = getArraySum(matrix[ROW - 1]);
       if (lastArraySum != 0) {
         setGameOver(true);
@@ -68,12 +87,14 @@ export default function Home() {
     }
     /* case 3 If the currentsum is greater then achieved the sum */
     if (showCurrentSum > achievedSum) {
-      updateStatus(selectCell);
+      updateMatrix(selectedCellIndexArr);
       return;
     }
   }, [showCurrentSum]);
 
-  const updateStatus = function(selectedCellArray) {
+  /* This function will run if any case true to update matrix */
+  const updateMatrix = selectedCellArray => {
+    /* this function is used to empty the cell/disappear */
     const getUpdatedMatrix = makeMatrixValueZero(selectedCellArray, [
       ...matrix
     ]);
@@ -83,6 +104,7 @@ export default function Home() {
     setCurrentSum(0);
   };
 
+  /* this function will call when to add new random number row to matrix */
   const insertRandowArrayToMatrix = col => {
     const randomNumberArray = getRandomArray(col);
     const temp = [...matrix];
@@ -92,10 +114,7 @@ export default function Home() {
     setCount(prev => prev + 1);
   };
 
-  useEffect(() => {
-    insertRandowArrayToMatrix(COL);
-  }, []);
-
+  /* This useEffect to handle the case 4 */
   useEffect(() => {
     if (insertCount > ROW) {
       setCount(prev => prev - 1);
@@ -105,7 +124,8 @@ export default function Home() {
     }
   }, [insertCount]);
 
-  const checkIfMiddleMatrixArrEmpty = function(count) {
+  /* Case 4 :- if complete middle row disappear */
+  const checkIfMiddleMatrixArrEmpty = count => {
     if (count > 1) {
       let temp = [...matrix];
       let updateMatrix;
@@ -120,22 +140,29 @@ export default function Home() {
     }
   };
 
+  /* run setInerval in every 1 second */
   useEffect(() => {
-    const interval = setInterval(() => {
+    interval = setInterval(() => {
       setSeconds(seconds => seconds + 1);
     }, 1000);
-    return () => clearInterval(interval);
   }, []);
 
+  //clear interval after game over
+  useEffect(() => {
+    return () => clearInterval(interval);
+  }, [isGameOver]);
+
+  /* If one of the columns is filled completely and the timer runs out */
   useEffect(() => {
     if (seconds == 10) {
+      /* if arr sum = 0 then the complete cell is empty*/
       const lastArraySum = getArraySum(matrix[ROW - 1]);
       if (lastArraySum != 0) {
+        /* it is game over! (Because there is no room for a full new row to appear)*/
         setGameOver(true);
         setSelectCell([]);
       } else {
         setSeconds(0);
-        console.log("insert new");
         insertRandowArrayToMatrix(COL);
         setSelectCell([]);
         setCurrentSum(0);
@@ -143,28 +170,39 @@ export default function Home() {
       }
     }
   }, [seconds]);
+
   return (
     <div className={styles.app_header}>
       <div className={styles.center_container}>
         <div className={styles.score_header}>
-          <div className={styles.box}>
-            <div className={styles.left_box}>
-              <Show classString={"achieved_sum"} valueShow={achievedSum} />
-            </div>
-            <div className={styles.right_box}>
-              <Show classString={"current_sum"} valueShow={showCurrentSum} />
-            </div>
-          </div>
           {isGameOver ? (
             <div className={styles.total_score}>
               <p>Game Over</p>
               <p>Final Score: {score}</p>
+              <div className={styles.time_finish}>
+                <div className={styles.time_bar}></div>
+              </div>
+              <button onClick={refreshPage}>Play Again</button>
             </div>
           ) : (
-            <div className={styles.total_score}>SCORE: {score}</div>
+            <div className={styles.box}>
+              <div className={styles.flex_item}>
+                <div className={styles.left_box}>
+                  <Show classString={"achieved_sum"} valueShow={achievedSum} />
+                </div>
+                <div className={styles.right_box}>
+                  <Show
+                    classString={"current_sum"}
+                    valueShow={showCurrentSum}
+                  />
+                </div>
+              </div>
+              <div className={styles.total_score}>SCORE: {score}</div>
+              <div className={styles.timer}>
+                <Timer seconds={seconds} />
+              </div>
+            </div>
           )}
-          {seconds}
-          {/* <Timer /> */}
         </div>
         <div className={styles.random_number_wrapper}>
           {matrix.map((items, index) => {
@@ -178,7 +216,11 @@ export default function Home() {
                       rowValue={index}
                       colValue={sIndex}
                       disable={isGameOver}
-                      isActive={checkIfActive(index, sIndex, selectCell)}
+                      isActive={checkIfActive(
+                        index,
+                        sIndex,
+                        selectedCellIndexArr
+                      )}
                       clicked={e => {
                         handleCellClick(e);
                       }}

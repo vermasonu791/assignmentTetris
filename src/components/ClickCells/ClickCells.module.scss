@@ -9,6 +9,10 @@
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: #bdbdbd 0px 5px;
+  transition: all 0.3s ease-in;
+  &.add_hover:hover {
+    transform: scale(1.1);
+  }
   &.is_active {
     background: #ffeb39;
   }

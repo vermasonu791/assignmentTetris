@@ -1,0 +1,37 @@
+.wrapper {
+  width: 100%;
+  border-radius: 40px;
+  height: 40px;
+  padding: 0 10px;
+  background-color: #fff;
+  transition: width 10s linear;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .slide_bar {
+    width: 100%;
+    .progress_bar {
+      height: 10px;
+      background-color: #ffeb39;
+      width: 0%;
+      position: relative;
+      border-radius: 20px;
+      transition: linear;
+      z-index: 1;
+    }
+    .progress_bar_bg {
+      height: 10px;
+      margin-top: -10px;
+      background-color: #fff9c8;
+      width: inherit;
+      position: relative;
+      border-radius: 20px;
+      transition: linear;
+    }
+  }
+  .clock_img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+}

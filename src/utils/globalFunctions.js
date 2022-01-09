@@ -1,3 +1,4 @@
+/* pass more then one class */
 export const cx = (...className) => {
   return className.reduce((acc, item, index) => {
     if (index >= 1 && item) acc = acc + " " + item;
@@ -6,7 +7,8 @@ export const cx = (...className) => {
   }, "");
 };
 
-export const randomInteger = function(min, max = max - 1) {
+/* Get random integer */
+export const randomInteger = function(min, max = max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 

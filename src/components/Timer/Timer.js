@@ -1,45 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import styles from "./Timer.module.scss";
+import logo from "../../assets/clock.png";
 
-export default function Timer() {
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-
-  function toggle() {
-    setIsActive(!isActive);
-  }
-
-  function reset() {
-    setSeconds(0);
-    setIsActive(false);
-  }
-
+export default function Timer({ seconds }) {
   useEffect(() => {
-    let interval = null;
-    if (isActive) {
-      interval = setInterval(() => {
-        setSeconds(seconds => seconds + 1);
-      }, 1000);
-    } else if (!isActive && seconds !== 0) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isActive, seconds]);
-
+    const elem = document.getElementById("progress-bar");
+    /*incerease width by 10% in every 1 second */
+    if (elem) elem.style.width = seconds * 10 + "%";
+  }, [seconds]);
   return (
-    <div className="app">
-      <div className="time">{seconds}s</div>
-      <div className="row">
-        <button
-          className={`button button-primary button-primary-${
-            isActive ? "active" : "inactive"
-          }`}
-          onClick={toggle}
-        >
-          {isActive ? "Pause" : "Start"}
-        </button>
-        <button className="button" onClick={reset}>
-          Reset
-        </button>
+    <div className={styles.wrapper}>
+      <img className={styles.clock_img} src={logo} alt="clock image" />
+      <div className={styles.slide_bar}>
+        <div className={styles.progress_bar} id="progress-bar"></div>
+        <div className={styles.progress_bar_bg}></div>
       </div>
     </div>
   );

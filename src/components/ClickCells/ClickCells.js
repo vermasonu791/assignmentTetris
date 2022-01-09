@@ -10,7 +10,11 @@ export default function ClickCells({
 }) {
   return (
     <div
-      className={cx(styles.clickable_cell, isActive ? styles.is_active : "")}
+      className={cx(
+        styles.clickable_cell,
+        isActive ? styles.is_active : "",
+        cellValue != 0 ? styles.add_hover : ""
+      )}
     >
       {cellValue != 0 && (
         <button
