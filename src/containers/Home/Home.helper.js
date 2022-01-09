@@ -37,3 +37,18 @@ export const getArraySum = arr => {
   });
   return sum;
 };
+
+export const makeMatrixValueZero = (arr, matrix) => {
+  for (let i = 0; i < arr.length; i++) {
+    matrix[arr[i].i][arr[i].j] = 0;
+  }
+  return matrix;
+};
+
+export const moveArrayElement = (input, from, to) => {
+  let numberOfDeletedElm = 1;
+  const elm = input.splice(from, numberOfDeletedElm)[0];
+  numberOfDeletedElm = 0;
+  input.splice(to, numberOfDeletedElm, elm);
+  return input;
+};

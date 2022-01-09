@@ -5,7 +5,8 @@ export default function ClickCells({
   cellValue,
   rowValue,
   colValue,
-  clicked
+  clicked,
+  disable
 }) {
   return (
     <div
@@ -20,6 +21,7 @@ export default function ClickCells({
           value={cellValue}
           data-rowindex={rowValue}
           data-colindex={colValue}
+          disabled={disable}
         >
           {cellValue}
         </button>
