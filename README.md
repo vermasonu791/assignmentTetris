@@ -21,6 +21,16 @@ column.
 cells must also move upwards and settle in the last empty block space in their respective
 column.
 
+###  Tools used to complete this
+```
+  1 React:- A JavaScript library for building user interfaces and to make single page application
+  2 CSS Modules:- Using CSS modules avoid namespace collision for CSS classes
+                  we can use the same CSS class in multiple CSS files
+                  Using CSS Modules generates random CSS classes when displayed in the browser
+                  
+  3 Firebase:- Firebase is Google's mobile platform that helps you quickly develop high-quality apps           
+
+```
 ###  :file_folder: File Structure
 ```
 ├── build
