@@ -1,5 +1,5 @@
 .clickable_cell {
-  background: #fafafa;
+  background: #efefef;
   height: 40px;
   width: 40px;
   display: flex;
@@ -8,22 +8,40 @@
   margin: 5px;
   margin-bottom: 10px;
   border-radius: 8px;
-  box-shadow: #bdbdbd 0px 5px;
+  box-shadow: #efefef 0px 5px;
   transition: all 0.3s ease-in;
   &.add_hover:hover {
     transform: scale(1.1);
   }
-  &.is_active {
-    background: #ffeb39;
-  }
+
   button {
     border: none;
-    background: transparent;
+    background: #fff;
     color: #000;
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
     width: 100%;
     border-radius: 8px;
+    // animation: expand 3s;
+    &.animation {
+      animation: expand 3s;
+    }
+    &.is_active {
+      background: #ffeb39;
+    }
+  }
+}
+
+@keyframes expand {
+  0% {
+    transform: translateY(-42px);
+    background-color: transparent;
+    color: #fff;
+  }
+  100% {
+    transform: translateY(0px);
+    background-color: #dbfff4;
+    color: #000;
   }
 }

@@ -12,7 +12,6 @@ export default function ClickCells({
     <div
       className={cx(
         styles.clickable_cell,
-        isActive ? styles.is_active : "",
         cellValue != 0 ? styles.add_hover : ""
       )}
     >
@@ -26,6 +25,10 @@ export default function ClickCells({
           data-rowindex={rowValue}
           data-colindex={colValue}
           disabled={disable}
+          className={cx(
+            cellValue != 0 ? styles.animation : styles.disappear,
+            isActive ? styles.is_active : ""
+          )}
         >
           {cellValue}
         </button>

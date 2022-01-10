@@ -5,7 +5,7 @@ import logo from "../../assets/clock.png";
 export default function Timer({ seconds }) {
   useEffect(() => {
     const elem = document.getElementById("progress-bar");
-    /*incerease width by 10% in every 1 second */
+    /* incerease width by 10% in every 1 second */
     if (elem) elem.style.width = seconds * 10 + "%";
   }, [seconds]);
   return (
