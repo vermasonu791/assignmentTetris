@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Introduction
+- I have created interface where you can play a mini game based which will show you how good you are on addition.
+- Deploy link:- https://mini-game-1c7dc.web.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##  :beginner: Features
+• The top left box shows the number to be achieved by addition.
+• The top right box shows your current sum based on numbers you have selected from the
+grid.
+• The bar is your timer which when runs out, a new row appears from the top and slides down
+to the available positions (like in tetris).
 
-## Available Scripts
+• The selected cells will appear in a different color than the other cells and if you select (click
+on) a selected cell again, it must get de-selected and the sum in the top right box must show
+the updated current sum after each selection / de-selection.
 
-In the project directory, you can run:
+• A new row must appear at the top and should move down a row when the timer runs out or
+sum is achieved; until each cell reaches at the bottom of the available space in its respective
+column.
 
-### `npm start`
+• In a similar manner, after you win a round and the selected numbers disappear, the remaining
+cells must also move upwards and settle in the last empty block space in their respective
+column.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+###  :file_folder: File Structure
+Add a file structure here with the basic details about files, below is an example.
+```
+.
+├── build
+├── src
+│   ├── assest
+│.  │.    │── clock.png
+│   ├── components 
+│   │   ├── ClickCells
+│   │   │   ├── ClickCells.js
+│   │   │   ├── index.js
+│   │   │   └── ClickCells.module.scss 
+│   │   ├── Show
+│   │   │   ├── Show.js
+│   │   │   └── index.js
+│   │   │    └── Show.module.scss 
+│   │   ├──    Timer
+│   │   │   ├── Timer.js
+│   │   │   └── index.js
+│   │   │    └── Timer.module.scss 
+│   ├── containers 
+│   │   ├── Home
+│   │   │   ├── Home.js
+│   │   │   ├── index.js
+│.  │.  │   ├── Home.helper.js
+│   │   │   └── Home.module.scss 
+│   ├── Styles 
+│   │   └── global.css
+│   ├── Utils 
+│   │   ├── constant.js
+│   │   └── globalFunction.js
+│   └──  index.js
+├── package-lock.json
+├── package.json
+└── README.md
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+###  :nut_and_bolt: Development Environment
+- Clone the github repo to your system
 
-### `npm test`
+```
+$ use terminal 
+$ go to the project directory /assignmetTetris
+$ run command `npm i`
+$ run command ` npm start`
+$ Runs the app in the development mode.\
+  Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
