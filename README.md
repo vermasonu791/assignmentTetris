@@ -22,9 +22,7 @@ cells must also move upwards and settle in the last empty block space in their r
 column.
 
 ###  :file_folder: File Structure
-Add a file structure here with the basic details about files, below is an example.
 ```
-.
 ├── build
 ├── src
 │   ├── assest
@@ -59,7 +57,7 @@ Add a file structure here with the basic details about files, below is an exampl
 └── README.md
 ```
 
-###  :nut_and_bolt: Development Environment
+###  :nut_and_bolt: Run code on your system
 - Clone the github repo to your system
 
 ```
