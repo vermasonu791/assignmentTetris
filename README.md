@@ -1,5 +1,5 @@
 # Introduction
-- I have created interface where you can play a mini game based which will show you how good you are on addition.
+- I have created interface where you can play a mini game.which will show you how good you are on addition.
 - Deploy link:- https://mini-game-1c7dc.web.app/
 
 ##  :beginner: Features
